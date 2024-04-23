@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learn_bloc/cubit/counter_cubit.dart';
+import 'package:learn_bloc/bloc/counter_bloc.dart';
 
 class HomepageVal extends StatelessWidget {
   const HomepageVal({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -17,14 +16,12 @@ class HomepageVal extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            BlocBuilder<CounterCubit, int>(
-                bloc: counterCubit,
-                builder: (context, counter) {
-                  return Text(
-                    '$counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  );
-                }),
+            BlocBuilder<CounterBloc, int>(builder: (context, counter) {
+              return Text(
+                '$counter',
+                style: Theme.of(context).textTheme.headlineMedium,
+              );
+            }),
           ],
         ),
       ),
